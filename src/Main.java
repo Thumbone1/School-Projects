@@ -1,6 +1,6 @@
-package contacts;
 
-import contacts.ui.TextUserInterface;
+
+
 import java.util.Scanner;
 
 
