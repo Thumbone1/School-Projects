@@ -21,8 +21,11 @@ public abstract class Character {
         this(0, 0);
     }
     
-    public void move(int x, int y) {
+    public void moveX(int x) {
         xPos += x;
+    }
+    
+    public void moveY(int y) {
         yPos += y;
     }
     

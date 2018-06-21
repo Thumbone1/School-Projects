@@ -18,11 +18,9 @@ public class Player extends Character {
         return blinksLeft;
     }
 
-    public void setBlinksLeft(int blinksLeft) {
-        this.blinksLeft = blinksLeft;
+    public void useFlashlight() {
+        this.blinksLeft--;
     }
-    
-    
     
     @Override
     public String toString() {
