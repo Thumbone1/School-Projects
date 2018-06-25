@@ -50,4 +50,33 @@ public abstract class Character {
         return xPos + " " + yPos;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.xPos;
+        hash = 47 * hash + this.yPos;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Character other = (Character) obj;
+        if (this.xPos != other.xPos) {
+            return false;
+        }
+        if (this.yPos != other.yPos) {
+            return false;
+        }
+        return true;
+    }
+
 }
