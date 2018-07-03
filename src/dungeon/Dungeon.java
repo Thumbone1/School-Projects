@@ -157,20 +157,6 @@ public class Dungeon {
         return vampCheckList.contains(vampireWithNewLocation);
     }
     
-    // Checks for killed vamps (collision with player) and *removes them from list*
-    private void checkIfKill() {
-        List<Character> killedVampires = new ArrayList<Character>();
-        
-        for (Character vampire : vampireList) {
-            if (vampire.equals(player)) {
-                killedVampires.add(vampire);
-            }
-        }
-        
-        vampireList.removeAll(killedVampires);
-        
-    }
-    
     // moves player, reduces number of flashes, and checks if vampire is killed
     private void movePlayer(int xMove, int yMove) {
         
@@ -185,7 +171,19 @@ public class Dungeon {
             checkIfKill();
             player.useFlashlight();
         }
+    }
+    
+    // Checks for killed vamps (collision with player) and *removes them from list*
+    private void checkIfKill() {
+        List<Character> killedVampires = new ArrayList<Character>();
         
+        for (Character vampire : vampireList) {
+            if (vampire.equals(player)) {
+                killedVampires.add(vampire);
+            }
+        }
+        
+        vampireList.removeAll(killedVampires);
         
     }
     

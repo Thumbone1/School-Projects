@@ -17,9 +17,14 @@ public class Vampire extends Character {
         return "v " + super.toString();
     }
 
+    
+    /**
+     * Honestly didn't realize when I started that abstract classes required 
+     * abstract methods... So these Player methods are useless for the Vampire class
+     * :/
+     */
     @Override
     public void useFlashlight() {
-        return;
     }
 
     @Override
