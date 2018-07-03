@@ -79,4 +79,8 @@ public abstract class Character {
         return true;
     }
 
+    // abstract methods for Player class
+    public abstract void useFlashlight();
+    public abstract int getBlinksLeft();
+
 }

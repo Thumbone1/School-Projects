@@ -17,4 +17,14 @@ public class Vampire extends Character {
         return "v " + super.toString();
     }
 
+    @Override
+    public void useFlashlight() {
+        return;
+    }
+
+    @Override
+    public int getBlinksLeft() {
+        return 0;
+    }
+
 }
