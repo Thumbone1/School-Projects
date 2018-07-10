@@ -16,7 +16,6 @@ public class Vampire extends Character {
     public String toString() {
         return "v " + super.toString();
     }
-
     
     /**
      * Honestly didn't realize when I started that abstract classes required 

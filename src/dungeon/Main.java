@@ -1,5 +1,7 @@
 package dungeon;
 
+import dungeon.logic.Dungeon;
+
 
 public class Main {
     public static void main(String[] args) {

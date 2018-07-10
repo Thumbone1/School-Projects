@@ -1,10 +1,7 @@
 
 
-package dungeon;
+package dungeon.logic;
 
-import dungeon.logic.Player;
-import dungeon.logic.Vampire;
-import dungeon.logic.Character;
 import dungeon.util.TextReader;
 import java.util.ArrayList;
 import java.util.HashSet;
