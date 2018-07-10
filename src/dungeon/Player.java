@@ -14,10 +14,12 @@ public class Player extends Character {
         this.blinksLeft = blinks;
     }
 
+    @Override
     public int getBlinksLeft() {
         return blinksLeft;
     }
 
+    @Override
     public void useFlashlight() {
         this.blinksLeft--;
     }

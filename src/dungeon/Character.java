@@ -9,12 +9,10 @@ package dungeon;
 public abstract class Character {
     private int xPos;
     private int yPos;
-    private boolean isAlive;
     
     public Character(int x, int y) {
         this.xPos = x;
         this.yPos = y;
-        this.isAlive = true;
     }
     
     public Character() {
@@ -37,14 +35,6 @@ public abstract class Character {
         return yPos;
     }
     
-    public void setAlive(boolean bool) {
-        isAlive = bool;
-    }
-    
-    public boolean isAlive() {
-        return isAlive;
-    }
-    
     @Override
     public String toString() {
         return xPos + " " + yPos;
@@ -58,15 +48,18 @@ public abstract class Character {
         return hash;
     }
 
+    /**
+     * This won't check for the correct object type since there are only 2 chars
+     * in this game that are only of Character type.
+     * @param obj will be either a player or vampire type
+     * @return True if both Characters are in the same position.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
         if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
             return false;
         }
         final Character other = (Character) obj;
