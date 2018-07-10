@@ -1,4 +1,4 @@
-package dungeon;
+package dungeon.util;
 
 
 import java.util.InputMismatchException;

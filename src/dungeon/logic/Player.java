@@ -1,6 +1,6 @@
 
 
-package dungeon;
+package dungeon.logic;
 
 /**
  *
