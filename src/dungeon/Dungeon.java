@@ -33,16 +33,6 @@ public class Dungeon {
     }
     
     public void run() {
-        /*
-        System.out.println(player);
-        printVampires();
-        drawBoard();
-        moveVampires();
-        System.out.println("");
-        System.out.println(player);
-        printVampires();
-        drawBoard();
-        */
         
         while (true) {
             
@@ -66,7 +56,6 @@ public class Dungeon {
             
             String input = reader.readString();
             readPlayerMoves(input);
-            moveVampires();
             
         }
         
@@ -115,8 +104,8 @@ public class Dungeon {
         
         /*
         This should ensure that there will be the correct number of vampires
-        and that no vampire is loaded at the character position during
-        game initialization
+        and that no vampire is loaded at the character position  or on top of
+        other vampires during game initialization.
         */
         
         while (initialVampSet.size() < vampires) {
@@ -138,6 +127,7 @@ public class Dungeon {
         for (Character vampire : vampireList) {
             System.out.println(vampire);
         }
+        System.out.println("");
     }
     
     /**
@@ -146,12 +136,14 @@ public class Dungeon {
      */
     private void moveVampires() {
         
+        if (vampiresMove == false) {
+            return;
+        }
+        
         for (Character vampire : vampireList) {
             
             int xMove = new Random().nextInt(3) - 1;
             int yMove = new Random().nextInt(3) - 1;
-            
-            //System.out.println("Trying to move " + vampire + " x: " + xMove + " y: " + yMove);
             
             if (vampire.getXPos() + xMove < length && 
                 vampire.getYPos() + yMove < height &&
@@ -161,12 +153,6 @@ public class Dungeon {
                 
                 vampire.moveX(xMove);
                 vampire.moveY(yMove);
-                
-                /*
-                System.out.print("moving : " + xMove + " " + yMove);
-                System.out.println("\tVampires new pos " + vampire.getXPos() + 
-                        " " + vampire.getYPos());
-                */
             }
         }
     }
@@ -177,7 +163,7 @@ public class Dungeon {
      * @param vampire
      * @param xMove
      * @param yMove
-     * @return 
+     * @return True if there is a collision
      */
     private boolean isVampireCollision(Character vampire, int xMove, int yMove) {
         /**
@@ -201,37 +187,33 @@ public class Dungeon {
     
     /**
      * moves player and checks for vampire kills
-     * @param xMove 
-     * @param yMove 
+     * moves vampires for each player attempted move
+     * @param xMove = player move x
+     * @param yMove = player move y
      */
-    private void movePlayer(int xMove, int yMove) {
-        System.out.println("in the movePlayer method");
-        System.out.println(player.getXPos() + xMove < length);
-        System.out.println(player.getYPos() + yMove < height);
-        System.out.println(player.getXPos() + xMove >= 0);
-        System.out.println(player.getYPos() + yMove >= 0);
+    private void takeStep(int xMove, int yMove) {
         
         if (player.getXPos() + xMove < length && 
             player.getYPos() + yMove < height &&
             player.getXPos() + xMove >= 0 &&
             player.getYPos() + yMove >= 0) {
             
-            System.out.println("Moving player: " + xMove + ", " + yMove);
-            
             player.moveX(xMove);
             player.moveY(yMove);
             
             checkIfKill();
-            
         }
+        
+        moveVampires();
     }
     
-    // Checks for killed vamps (collision with player) and *removes them from list*
+    /**
+     * Checks for killed vamps (collision with player) and *removes them from list*
+     */
     private void checkIfKill() {
         List<Character> killedVampires = new ArrayList<Character>();
         
         for (Character vampire : vampireList) {
-            System.out.println("vampire: " + vampire + " and player " + player + " are equal: " + vampire.equals(player));
             if (vampire.equals(player)) {
                 
                 killedVampires.add(vampire);
@@ -256,23 +238,19 @@ public class Dungeon {
         
         for (int i = 0; i < moves.length; i++) {
             if (moves[i] == 'w') {
-                System.out.println("imput is " + moves[i]);
-                movePlayer(0, -1);
+                takeStep(0, -1);
             }
             
             if (moves[i] == 's') {
-                System.out.println("imput is " + moves[i]);
-                movePlayer(0, 1);
+                takeStep(0, 1);
             }
             
             if (moves[i] == 'd') {
-                System.out.println("imput is " + moves[i]);
-                movePlayer(1, 0);
+                takeStep(1, 0);
             }
             
             if (moves[i] == 'a') {
-                System.out.println("imput is " + moves[i]);
-                movePlayer(-1, 0);
+                takeStep(-1, 0);
             }
         }
         
